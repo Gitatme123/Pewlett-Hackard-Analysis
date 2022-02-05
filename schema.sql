@@ -14,7 +14,7 @@ CREATE TABLE employees (
      last_name VARCHAR NOT NULL,
      gender VARCHAR NOT NULL,
      hire_date DATE NOT NULL,
-     PRIMARY KEY (emp_no)
+     PRIMARY KEY (emp_no)	
 );
 
 CREATE TABLE dept_manager (
@@ -36,5 +36,26 @@ CREATE TABLE salaries (
   FOREIGN KEY (emp_no) REFERENCES employees (emp_no),
   PRIMARY KEY (emp_no)
 );
+
+CREATE TABLE titles (
+  title varchar(40) not NULL,
+  emp_no INT NOT NULL,
+  from_date DATE NOT NULL,
+  to_date DATE NOT NULL,
+FOREIGN KEY (emp_no) REFERENCES employees (emp_no),
+	Primary KEY (emp_no),
+	Unique (title)
+);
+
+CREATE TABLE dept_emp (
+  emp_no INT not null,
+  dept_no varchar(4) not null,
+  from_date date not null,
+  to_date date not null,
+foreign key (emp_no) references employees (emp_no),
+foreign key (dept_no) references departments (dept_no),
+  primary key (emp_no, dept_no)
+);
+  
 
 SELECT * from departments;
